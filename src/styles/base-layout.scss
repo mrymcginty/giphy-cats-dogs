@@ -3,6 +3,7 @@ html,
   height: 100%; //enable .App div to fill height
 }
 body {
+  height: 100%;
   @extend .sans-regular;
   -webkit-font-smoothing: antialiased;
   margin: 0;
@@ -16,13 +17,13 @@ body {
 
 .App {
   padding: 0 15px;
+  height: 100%;
   @include md {
     padding: 0 40px;
   }
 }
 
-.App_header {
-  height: 100vh;
+.App_content {
   display: flex;
   flex-direction: row;
   flex-basis: 100%;
@@ -37,12 +38,60 @@ body {
     width: 100%;
     max-width: 650px;
     margin: 0 auto;
-    padding: 50px 0;
+    padding: 50px 0 20px 0;
     flex-basis: 50%;
+    @include md {
+      padding: 50px 0;
+    }
   }
 
   &_illustrations {
     padding-top: 40px;
     align-self: flex-end;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 60%;
+    pointer-events: none; // when we animate it up, we dont' want to block buttons
+    svg {
+      width: 50%;
+      height: auto;
+      align-self: flex-end;
+    }
+  }
+}
+
+.App_content_illustrations {
+  transition: all 0.75s ease-out;
+  transition-delay: 300ms;
+  padding: 0;
+  svg {
+    transition: all 0.75s ease-out;
+    transition-delay: 300ms;
+  }
+  //transition settings
+  &.reduced {
+    // margin-top: -100px;
+    // @include md {
+    //   margin-top: -160px;
+    // }
+    width: 100%;
+    svg {
+      width: 20%;
+    }
+  }
+}
+.App_content_results {
+  //transition settings
+
+  background-color: $accent-light;
+  transition: all 0.75s ease-out;
+  transition-delay: 300ms;
+  display: block;
+  width: 100%;
+  margin-bottom: 80px;
+  opacity: 0;
+  &.visible {
+    opacity: 1; //set max-height to an unlikely high number to aid transition
   }
 }

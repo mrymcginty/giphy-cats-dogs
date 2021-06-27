@@ -1,98 +1,38 @@
 .searchResults {
-  max-width: 960px;
+  width: 100%;
   list-style-type: none;
+  margin: 0 auto 0 auto;
   padding: 0;
-  margin: 0 auto;
-  display: flex;
-  flex-flow: row wrap;
   position: relative;
   background-color: white;
-  padding: 20px;
+  @include md {
+    //columns on medium screens and up
+    display: flex;
+    flex-flow: row wrap;
+  }
+
   li {
-    flex-basis: 20%;
+    border: 10px solid $accent-light;
+    background-color: $accent-mid;
+    flex-basis: calc(20% - 20px);
+    cursor: pointer;
+    min-width: 200px;
+    min-height: 200px;
+
     img {
-      width: 150px;
-      height: 150px;
+      width: 100%;
+      height: auto;
+
+      display: block;
       max-width: 100%;
       object-fit: cover;
+      @include md {
+        height: 200px; //fixed_height_downsampled size is 200px high
+      }
     }
   }
 }
 
 .pagination {
   margin: 20px 0;
-}
-
-.detailView {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, $color-base1 0%, $color-base2 100%);
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  &_content {
-    max-width: 90%;
-    position: relative;
-    padding: 50px;
-    background-color: $accent-light;
-    color: $color-base1;
-    img {
-      width: 100%;
-      max-width: 500px;
-      max-height: 100%;
-      margin-bottom: 15px;
-    }
-    p {
-      margin-top: 5px;
-    }
-  }
-
-  .button {
-    margin-bottom: 20px;
-  }
-  &_close {
-    @extend .sans-xbold;
-    border: 4px solid $color-base2;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    font-size: 0;
-    line-height: 0;
-    display: block;
-    transition: transform 0.2s ease-in;
-    cursor: pointer;
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      height: 4px;
-      width: calc(100% - 6px);
-      top: 50%;
-      left: 3px;
-      margin-top: -3px;
-      background: $color-base2;
-    }
-    &::before {
-      transform: rotate(45deg);
-    }
-    &::after {
-      transform: rotate(-45deg);
-    }
-
-    &:hover {
-      transform: rotate(90deg);
-    }
-  }
-
-  display: none;
-  &.visible {
-    display: flex;
-  }
 }

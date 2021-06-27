@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import DetailView from './detail-view';
 function GetGiphies(props) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -7,12 +7,14 @@ function GetGiphies(props) {
   const [pageOffset, setPageOffset] = useState(0);
   const [currPage, setCurrPage] = useState(1);
   const [numPages, setNumPages] = useState(0);
+  const [detailViewClass, setDetailViewClass] = useState('');
+  const [detailViewImg, setDetailViewImg] = useState('');
+  const [detailViewTitle, setDetailViewTitle] = useState('');
+  const [detailViewRating, setDetailViewRating] = useState('');
+  const [detailViewUrl, setDetailViewUrl] = useState('');
 
-  const perPage = 25;
+  const perPage = 25; //results per page
 
-  // Note: the empty deps array [] means
-  // this useEffect will run once
-  // similar to componentDidMount()
   useEffect(() => {
     if (props.searchGiphysFor !== 'default') {
       fetch(
@@ -21,15 +23,11 @@ function GetGiphies(props) {
         .then((response) => response.json())
         .then(
           (result) => {
-            console.log(result);
             setIsLoaded(true);
             setItems(result.data);
             setPageOffset(result.pagination.offset);
-            setNumPages(Math.ceil(result.pagination.total_count / perPage));
+            setNumPages(Math.ceil(result.pagination.total_count / perPage)); //total number of pages returned
           },
-          // Note: it's important to handle errors here
-          //         // instead of a catch() block so that we don't swallow
-          //         // exceptions from actual bugs in components.
           (error) => {
             console.log('error');
             setIsLoaded(true);
@@ -37,7 +35,7 @@ function GetGiphies(props) {
           }
         );
     }
-  }, [props.searchGiphysFor, pageOffset]);
+  }, [props.searchGiphysFor, pageOffset]); //fetch again when search term or paging changes
 
   const nextPage = () => {
     //Don't allow pagination past total numPages
@@ -55,9 +53,10 @@ function GetGiphies(props) {
   };
 
   const RenderNextBtn = () => {
+    //render next button:disabled if no next page is available
     if (currPage < numPages) {
       return (
-        <button className='button button--paginate' onClick={nextPage} title>
+        <button className='button button--paginate' onClick={nextPage}>
           Next &gt;
         </button>
       );
@@ -70,6 +69,7 @@ function GetGiphies(props) {
     }
   };
   const RenderPrevBtn = () => {
+    //render previous button:disabled if no previous page is available
     if (currPage > 1) {
       return (
         <button className='button button--paginate' onClick={prevPage}>
@@ -85,18 +85,25 @@ function GetGiphies(props) {
     }
   };
 
-  const openDetailView = (id) => {
-    console.log('openDetailView ' + id);
-    const selectedGiphy = document.getElementById(id);
+  const openDetailView = (data) => {
+    //set data to show in detail view
+    setDetailViewImg(data.src);
+    setDetailViewTitle(data.title);
+    setDetailViewRating(data.rating);
+    setDetailViewUrl(data.url);
+    //set lightbox visibility to true
+    setDetailViewClass('visible');
+  };
 
-    document.getElementById('detailView').classList.toggle('visible');
-    document.getElementById('detailView_img').src =
-      selectedGiphy.dataset.fullurl;
-    document.getElementById('detailView_title').textContent =
-      selectedGiphy.dataset.title;
-    document.getElementById('detailView_rating').textContent =
-      selectedGiphy.dataset.rating;
-    document.getElementById('detailView_url').href = selectedGiphy.dataset.url;
+  const closeDetailView = () => {
+    setDetailViewClass('');
+  };
+
+  const isSearchActive = (value) => {
+    return (
+      'searchResults_wrapper ' +
+      (props.searchGiphysFor !== 'default' ? 'visible' : '')
+    );
   };
 
   if (props.searchGiphysFor === 'default') {
@@ -108,72 +115,43 @@ function GetGiphies(props) {
   } else {
     return (
       <div>
-        <div className='pagination'>
-          <RenderPrevBtn />
-          <RenderNextBtn />
-        </div>
-        <p>Searching for: {props.searchGiphysFor}</p>
         <ul className='searchResults'>
           {items.map((item) => (
             <li
-              id={item.id}
               key={item.id}
-              onClick={() => openDetailView(item.id)}
-              data-fullurl={item.images.downsized_large.url}
-              data-title={item.title}
-              data-rating={item.rating}
-              data-url={item.url}
+              onClick={() =>
+                openDetailView({
+                  src: item.images.downsized_large.url,
+                  title: item.title,
+                  rating: item.rating,
+                  url: item.url,
+                })
+              }
             >
               <img
-                src={item.images.preview_gif.url}
-                width={item.images.preview_gif.width}
-                height={item.images.preview_gif.height}
-                alt={item.images.preview_gif.title}
+                src={item.images.fixed_height_downsampled.url}
+                width={item.images.fixed_height_downsampled.width}
+                height={item.images.fixed_height_downsampled.height}
+                alt={item.title}
               />
             </li>
           ))}
         </ul>
+        <div id='pagination' className='pagination'>
+          <RenderPrevBtn />
+          <RenderNextBtn />
+        </div>
+
         <DetailView
-          image_url='https://media.giphy.com/media/f5ehe7RcZPIuFllGOi/source.gif'
-          title='title'
-          rating='rating'
-          source_url='google'
+          class={detailViewClass}
+          image_url={detailViewImg}
+          title={detailViewTitle}
+          rating={detailViewRating}
+          source_url={detailViewUrl}
+          closeHandler={closeDetailView}
         />
       </div>
     );
   }
 }
 export default GetGiphies;
-
-function DetailView(props) {
-  const closeDetailView = () => {
-    console.log('closeDetailView');
-    document.getElementById('detailView').classList.toggle('visible');
-  };
-  return (
-    <div id='detailView' className='detailView'>
-      <div className='detailView_content'>
-        <div className='detailView_close' onClick={closeDetailView}>
-          close
-        </div>
-        <img id='detailView_img' src='' />
-        <h2>
-          Title: <span id='detailView_title'></span>
-        </h2>
-        <p>
-          Rating: <span id='detailView_rating'></span>
-        </p>
-
-        <a id='detailView_url' className='button' href='#' target='_blank'>
-          View on giphy.com
-        </a>
-
-        <p>
-          <a href='#' onClick={closeDetailView}>
-            Close
-          </a>
-        </p>
-      </div>
-    </div>
-  );
-}
