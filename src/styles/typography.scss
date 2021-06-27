@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;800&display=swap');
+/* Typography */
+.sans-light {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+.sans-regular {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+.sans-xbold {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+}
+h1,
+h2,
+h3 {
+  @extend .sans-xbold;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 40px;
+  letter-spacing: -2px;
+  margin-bottom: 0;
+  @media ($break-tablet-up) {
+    font-size: 60px;
+    letter-spacing: -3px;
+  }
+}
+
+p {
+  @extend .sans-regular;
+  font-size: 16px;
+  @media ($break-tablet-up) {
+    font-size: 20px;
+  }
+}

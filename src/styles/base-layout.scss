@@ -1,0 +1,43 @@
+html,
+#root {
+  height: 100%; //enable .App div to fill height
+}
+body {
+  @extend .sans-regular;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  text-align: center;
+  background: $color-base2;
+  background: linear-gradient(135deg, $color-base1 0%, $color-base2 100%);
+  color: $accent-light;
+}
+
+.App {
+  padding: 0 15px;
+  @media ($break-tablet-up) {
+    padding: 0 40px;
+  }
+}
+
+.App_header {
+  height: 100vh;
+  &_title {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 50px 0;
+  }
+
+  .catdog_wrapper {
+    width: 100%;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    svg {
+      width: 40%;
+    }
+  }
+}

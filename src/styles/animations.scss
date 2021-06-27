@@ -1,0 +1,131 @@
+/* Cat */
+#cat {
+  #eyelid_l,
+  #eyelid_r {
+    transform-origin: center center;
+    animation-name: cat_blink;
+    animation-duration: 1s;
+    animation-play-state: paused;
+  }
+  #ear_l,
+  #ear_r {
+    transform-origin: center center;
+    animation-name: ear_rotate_right;
+    animation-duration: 2s;
+    animation-play-state: paused;
+  }
+  #ear_l {
+    animation-name: ear_rotate_left;
+  }
+
+  &:hover {
+    #eyelid_l,
+    #eyelid_r,
+    #ear_l,
+    #ear_r {
+      animation-play-state: running;
+    }
+  }
+}
+@keyframes cat_blink {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+@keyframes ear_rotate_right {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes ear_rotate_left {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-3deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Dog */
+#dog {
+  #tongue {
+    transform-origin: center center;
+    animation-name: dog_tongue;
+    animation-duration: 0.2s;
+    animation-play-state: paused;
+    animation-iteration-count: infinite;
+  }
+  #ear_l,
+  #ear_r {
+    transform-origin: center center;
+    animation-name: dog_ears;
+    animation-duration: 0.3s;
+    animation-play-state: paused;
+    animation-iteration-count: infinite;
+  }
+  #tail {
+    transform-origin: center left;
+    animation-name: dog_tail;
+    animation-duration: 0.2s;
+    animation-play-state: paused;
+    animation-iteration-count: infinite;
+  }
+
+  &:hover {
+    #tongue,
+    #ear_l,
+    #ear_r,
+    #tail {
+      animation-play-state: running;
+    }
+  }
+}
+@keyframes dog_tongue {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes dog_ears {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes dog_tail {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-3deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
