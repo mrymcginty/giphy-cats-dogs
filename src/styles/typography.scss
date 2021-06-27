@@ -24,7 +24,7 @@ h1 {
   font-size: 40px;
   letter-spacing: -2px;
   margin-bottom: 0;
-  @media ($break-tablet-up) {
+  @include md {
     font-size: 60px;
     letter-spacing: -3px;
   }
@@ -32,8 +32,8 @@ h1 {
 
 p {
   @extend .sans-regular;
-  font-size: 16px;
-  @media ($break-tablet-up) {
-    font-size: 20px;
+  font-size: 14px;
+  @include md {
+    font-size: 16px;
   }
 }

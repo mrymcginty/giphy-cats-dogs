@@ -7,27 +7,30 @@ import { ReactComponent as Dog } from './images/dog.svg';
 
 import './App.scss';
 function App() {
-  const [searchTerm, setSearchTerm] = useState('default');
+  const [searchTerm, setSearchTerm] = useState('dog');
   const [username, setUsername] = useState('Default username');
 
   return (
     <div className='App'>
       <div className='App_header'>
-        <Title />
-        <div className='searchBy_wrapper'>
-          <Button
-            stateChanger={setSearchTerm}
-            label='Team Cat'
-            searchTerm='cat'
-          />
-          <Button
-            stateChanger={setSearchTerm}
-            label='Team Dog'
-            searchTerm='dog'
-          />
+        <div className='App_header_copy'>
+          <Title />
+          <div className='searchBy_wrapper'>
+            <Button
+              stateChanger={setSearchTerm}
+              label='Team Cat'
+              searchTerm='cat'
+            />
+            <Button
+              stateChanger={setSearchTerm}
+              label='Team Dog'
+              searchTerm='dog'
+            />
+          </div>
         </div>
+
         <GetGiphys searchGiphysFor={searchTerm} />
-        <div className='catdog_wrapper'>
+        <div className='App_header_illustrations'>
           <Cat />
           <Dog />
         </div>

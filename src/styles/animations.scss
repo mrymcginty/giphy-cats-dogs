@@ -4,36 +4,28 @@
   #eyelid_r {
     transform-origin: center center;
     animation-name: cat_blink;
-    animation-duration: 1s;
-    animation-play-state: paused;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
   }
   #ear_l,
   #ear_r {
     transform-origin: center center;
     animation-name: ear_rotate_right;
     animation-duration: 2s;
-    animation-play-state: paused;
+    animation-iteration-count: infinite;
   }
   #ear_l {
     animation-name: ear_rotate_left;
-  }
-
-  &:hover {
-    #eyelid_l,
-    #eyelid_r,
-    #ear_l,
-    #ear_r {
-      animation-play-state: running;
-    }
   }
 }
 @keyframes cat_blink {
   0% {
     transform: translateY(0px);
   }
-  50% {
+  10% {
     transform: translateY(8px);
   }
+  20%,
   100% {
     transform: translateY(0px);
   }
@@ -42,9 +34,10 @@
   0% {
     transform: rotate(0deg);
   }
-  50% {
+  20% {
     transform: rotate(3deg);
   }
+  40%,
   100% {
     transform: rotate(0deg);
   }
@@ -53,9 +46,10 @@
   0% {
     transform: rotate(0deg);
   }
-  50% {
+  20% {
     transform: rotate(-3deg);
   }
+  40%,
   100% {
     transform: rotate(0deg);
   }
@@ -67,7 +61,6 @@
     transform-origin: center center;
     animation-name: dog_tongue;
     animation-duration: 0.2s;
-    animation-play-state: paused;
     animation-iteration-count: infinite;
   }
   #ear_l,
@@ -75,24 +68,13 @@
     transform-origin: center center;
     animation-name: dog_ears;
     animation-duration: 0.3s;
-    animation-play-state: paused;
     animation-iteration-count: infinite;
   }
   #tail {
     transform-origin: center left;
     animation-name: dog_tail;
     animation-duration: 0.2s;
-    animation-play-state: paused;
     animation-iteration-count: infinite;
-  }
-
-  &:hover {
-    #tongue,
-    #ear_l,
-    #ear_r,
-    #tail {
-      animation-play-state: running;
-    }
   }
 }
 @keyframes dog_tongue {

@@ -16,28 +16,33 @@ body {
 
 .App {
   padding: 0 15px;
-  @media ($break-tablet-up) {
+  @include md {
     padding: 0 40px;
   }
 }
 
 .App_header {
   height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-basis: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+  &_copy {
+    align-self: center;
+    width: 100%;
+  }
+
   &_title {
     width: 100%;
     max-width: 650px;
     margin: 0 auto;
     padding: 50px 0;
+    flex-basis: 50%;
   }
 
-  .catdog_wrapper {
-    width: 100%;
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    svg {
-      width: 40%;
-    }
+  &_illustrations {
+    padding-top: 40px;
+    align-self: flex-end;
   }
 }

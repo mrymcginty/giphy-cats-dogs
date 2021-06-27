@@ -85,6 +85,20 @@ function GetGiphies(props) {
     }
   };
 
+  const openDetailView = (id) => {
+    console.log('openDetailView ' + id);
+    const selectedGiphy = document.getElementById(id);
+
+    document.getElementById('detailView').classList.toggle('visible');
+    document.getElementById('detailView_img').src =
+      selectedGiphy.dataset.fullurl;
+    document.getElementById('detailView_title').textContent =
+      selectedGiphy.dataset.title;
+    document.getElementById('detailView_rating').textContent =
+      selectedGiphy.dataset.rating;
+    document.getElementById('detailView_url').href = selectedGiphy.dataset.url;
+  };
+
   if (props.searchGiphysFor === 'default') {
     return <div />;
   } else if (error) {
@@ -94,10 +108,22 @@ function GetGiphies(props) {
   } else {
     return (
       <div>
+        <div className='pagination'>
+          <RenderPrevBtn />
+          <RenderNextBtn />
+        </div>
         <p>Searching for: {props.searchGiphysFor}</p>
         <ul className='searchResults'>
           {items.map((item) => (
-            <li key={item.id}>
+            <li
+              id={item.id}
+              key={item.id}
+              onClick={() => openDetailView(item.id)}
+              data-fullurl={item.images.downsized_large.url}
+              data-title={item.title}
+              data-rating={item.rating}
+              data-url={item.url}
+            >
               <img
                 src={item.images.preview_gif.url}
                 width={item.images.preview_gif.width}
@@ -107,12 +133,47 @@ function GetGiphies(props) {
             </li>
           ))}
         </ul>
-        <div className='pagination'>
-          <RenderPrevBtn />
-          <RenderNextBtn />
-        </div>
+        <DetailView
+          image_url='https://media.giphy.com/media/f5ehe7RcZPIuFllGOi/source.gif'
+          title='title'
+          rating='rating'
+          source_url='google'
+        />
       </div>
     );
   }
 }
 export default GetGiphies;
+
+function DetailView(props) {
+  const closeDetailView = () => {
+    console.log('closeDetailView');
+    document.getElementById('detailView').classList.toggle('visible');
+  };
+  return (
+    <div id='detailView' className='detailView'>
+      <div className='detailView_content'>
+        <div className='detailView_close' onClick={closeDetailView}>
+          close
+        </div>
+        <img id='detailView_img' src='' />
+        <h2>
+          Title: <span id='detailView_title'></span>
+        </h2>
+        <p>
+          Rating: <span id='detailView_rating'></span>
+        </p>
+
+        <a id='detailView_url' className='button' href='#' target='_blank'>
+          View on giphy.com
+        </a>
+
+        <p>
+          <a href='#' onClick={closeDetailView}>
+            Close
+          </a>
+        </p>
+      </div>
+    </div>
+  );
+}
