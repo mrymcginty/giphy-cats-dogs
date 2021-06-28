@@ -25,3 +25,9 @@
     @content;
   }
 }
+
+//to keep transitions consistent
+@mixin searchTransition() {
+  transition: all 0.75s ease-out;
+  transition-delay: 100ms;
+}

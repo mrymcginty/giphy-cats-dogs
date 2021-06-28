@@ -42,6 +42,7 @@ function GetGiphies(props) {
     if (currPage < numPages) {
       setPageOffset(pageOffset + perPage);
       setCurrPage(currPage + 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
   const prevPage = () => {
@@ -49,6 +50,7 @@ function GetGiphies(props) {
     if (currPage > 1) {
       setPageOffset(pageOffset - perPage);
       setCurrPage(currPage - 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -97,6 +99,7 @@ function GetGiphies(props) {
 
   const closeDetailView = () => {
     setDetailViewClass('');
+    setDetailViewImg('');
   };
 
   const isSearchActive = (value) => {

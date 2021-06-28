@@ -1,17 +1,22 @@
 .detailView {
+  $self: &;
   position: fixed;
+  z-index: 10;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, $color-base1 0%, $color-base2 100%);
+  background: white;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  @include md {
+    background: linear-gradient(45deg, $color-base1 0%, $color-base2 100%);
+  }
+
   &_content {
     max-width: 90%;
-    position: relative;
     padding: 50px;
     background-color: $accent-light;
     color: $color-base1;
@@ -23,6 +28,16 @@
     }
     p {
       margin-top: 5px;
+    }
+    .button {
+      box-shadow: 0 4px 15px 0 (rgba($color-base2, 0.5)); //lighten shadow on white bg
+      padding: 0 20px;
+      @include md {
+        padding: 0 40px;
+      }
+    }
+    @include md {
+      position: relative;
     }
   }
 
@@ -70,5 +85,29 @@
   transition: transform ease-out 0.3s;
   &.visible {
     transform: translateY(0);
+    img,
+    h2,
+    p,
+    .button {
+      opacity: 0;
+    }
+    #{ $self }_content {
+      background-image: url('../images/icon-loading.svg');
+      background-repeat: no-repeat;
+      background-size: 50px;
+      background-position: center;
+    }
+
+    &.loaded {
+      img,
+      h2,
+      p,
+      .button {
+        opacity: 1;
+      }
+      #{ $self }_content {
+        background-image: none;
+      }
+    }
   }
 }

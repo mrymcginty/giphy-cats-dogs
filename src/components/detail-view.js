@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 function DetailView(props) {
+  const [imageLoaded, setImageLoaded] = useState('');
+  const handleImageLoaded = () => {
+    setImageLoaded('loaded');
+  };
   return (
-    <div id='detailView' className={'detailView ' + props.class}>
+    <div
+      id='detailView'
+      className={'detailView ' + props.class + ' ' + imageLoaded}
+    >
       <div className='detailView_content'>
         <div className='detailView_close' onClick={props.closeHandler}>
           close
         </div>
-        <img src={props.image_url} alt={props.title} />
+        <img
+          src={props.image_url}
+          alt={props.title}
+          onLoad={handleImageLoaded}
+        />
         <h2>Title: {props.title}</h2>
         <p>Rating: {props.rating}</p>
 

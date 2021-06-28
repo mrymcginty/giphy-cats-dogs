@@ -1,38 +1,87 @@
 .searchResults {
   width: 100%;
   list-style-type: none;
-  margin: 0 auto 0 auto;
+  margin: -14px auto 0 auto; //account for margin on lis, we want the cat and dog to sit flush on the top of the grid.
   padding: 0;
   position: relative;
-  background-color: white;
   @include md {
     //columns on medium screens and up
     display: flex;
-    flex-flow: row wrap;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   li {
-    border: 10px solid $accent-light;
-    background-color: $accent-mid;
+    // border: 10px solid $accent-light;
+    // background-color: $accent-mid;
     flex-basis: calc(20% - 20px);
     cursor: pointer;
     min-width: 200px;
-    min-height: 200px;
-
+    height: auto;
+    margin: 10px;
+    position: relative;
+    background-color: $color-base1;
+    @include md {
+      min-height: 200px;
+    }
     img {
       width: 100%;
       height: auto;
-
       display: block;
       max-width: 100%;
       object-fit: cover;
+      transition: opacity 0.2s;
+      position: relative;
+      z-index: 1;
       @include md {
         height: 200px; //fixed_height_downsampled size is 200px high
+      }
+    }
+    &:before {
+      content: '';
+      width: 40px;
+      height: 40px;
+      display: block;
+      background-image: url('../images/icon-loading.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -20px 0 0 -20px;
+    }
+
+    &:after {
+      content: '';
+      width: 40px;
+      height: 40px;
+      display: block;
+      background-image: url('../images/icon-magnify.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -20px 0 0 -20px;
+      z-index: 1;
+      transition: opacity 0.2s;
+      opacity: 0;
+    }
+    &:hover,
+    &:focus {
+      &:before {
+        opacity: 0;
+      }
+      &:after {
+        opacity: 1;
+      }
+      img {
+        opacity: 0.3;
       }
     }
   }
 }
 
 .pagination {
-  margin: 20px 0;
+  margin: 20px 0 120px 0;
 }
