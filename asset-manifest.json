@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/mrymcginty/giphy-cats-dogs/static/css/main.e204fe2f.chunk.css",
-    "main.js": "/mrymcginty/giphy-cats-dogs/static/js/main.477df56e.chunk.js",
-    "main.js.map": "/mrymcginty/giphy-cats-dogs/static/js/main.477df56e.chunk.js.map",
-    "runtime-main.js": "/mrymcginty/giphy-cats-dogs/static/js/runtime-main.cb8d8fdc.js",
-    "runtime-main.js.map": "/mrymcginty/giphy-cats-dogs/static/js/runtime-main.cb8d8fdc.js.map",
-    "static/js/2.761095ff.chunk.js": "/mrymcginty/giphy-cats-dogs/static/js/2.761095ff.chunk.js",
-    "static/js/2.761095ff.chunk.js.map": "/mrymcginty/giphy-cats-dogs/static/js/2.761095ff.chunk.js.map",
-    "index.html": "/mrymcginty/giphy-cats-dogs/index.html",
-    "static/css/main.e204fe2f.chunk.css.map": "/mrymcginty/giphy-cats-dogs/static/css/main.e204fe2f.chunk.css.map",
-    "static/js/2.761095ff.chunk.js.LICENSE.txt": "/mrymcginty/giphy-cats-dogs/static/js/2.761095ff.chunk.js.LICENSE.txt",
-    "static/media/cat.5dc3f5fe.svg": "/mrymcginty/giphy-cats-dogs/static/media/cat.5dc3f5fe.svg",
-    "static/media/dog.d4f54cc3.svg": "/mrymcginty/giphy-cats-dogs/static/media/dog.d4f54cc3.svg",
-    "static/media/App.scss": "/mrymcginty/giphy-cats-dogs/static/media/icon-magnify.dad879b4.svg"
+    "main.css": "/giphy-cats-dogs/static/css/main.c00a756d.chunk.css",
+    "main.js": "/giphy-cats-dogs/static/js/main.477df56e.chunk.js",
+    "main.js.map": "/giphy-cats-dogs/static/js/main.477df56e.chunk.js.map",
+    "runtime-main.js": "/giphy-cats-dogs/static/js/runtime-main.03967e01.js",
+    "runtime-main.js.map": "/giphy-cats-dogs/static/js/runtime-main.03967e01.js.map",
+    "static/js/2.761095ff.chunk.js": "/giphy-cats-dogs/static/js/2.761095ff.chunk.js",
+    "static/js/2.761095ff.chunk.js.map": "/giphy-cats-dogs/static/js/2.761095ff.chunk.js.map",
+    "index.html": "/giphy-cats-dogs/index.html",
+    "static/css/main.c00a756d.chunk.css.map": "/giphy-cats-dogs/static/css/main.c00a756d.chunk.css.map",
+    "static/js/2.761095ff.chunk.js.LICENSE.txt": "/giphy-cats-dogs/static/js/2.761095ff.chunk.js.LICENSE.txt",
+    "static/media/cat.5dc3f5fe.svg": "/giphy-cats-dogs/static/media/cat.5dc3f5fe.svg",
+    "static/media/dog.d4f54cc3.svg": "/giphy-cats-dogs/static/media/dog.d4f54cc3.svg",
+    "static/media/App.scss": "/giphy-cats-dogs/static/media/icon-magnify.dad879b4.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.cb8d8fdc.js",
+    "static/js/runtime-main.03967e01.js",
     "static/js/2.761095ff.chunk.js",
-    "static/css/main.e204fe2f.chunk.css",
+    "static/css/main.c00a756d.chunk.css",
     "static/js/main.477df56e.chunk.js"
   ]
 }
