@@ -25,7 +25,7 @@ function App() {
   };
 
   return (
-    <div className='App'>
+    <div className='App' id='app'>
       <div className='App_content'>
         {/* Header wrapper > title, buttons, characters */}
         {/* If we have a search terms, apply our modifier class */}

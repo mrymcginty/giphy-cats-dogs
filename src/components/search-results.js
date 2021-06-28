@@ -15,18 +15,6 @@ function GetGiphies(props) {
 
   const perPage = 25; //results per page
 
-  //   useEffect(() => {
-  //     const fetchData = async () => {
-  //       const result = await fetch(
-  //         `https://api.giphy.com/v1/gifs/search?&q=${props.searchGiphysFor}&limit=${perPage}&offset=${pageOffset}&api_key=tdu5VqiLjqndckPcArJD6l3URliWfKOG`
-  //       );
-
-  //       setData(result.data);
-  //     };
-
-  //     fetchData();
-  //   }, []);
-
   useEffect(() => {
     if (props.searchGiphysFor !== 'default') {
       fetch(
@@ -48,7 +36,7 @@ function GetGiphies(props) {
             setNumPages(Math.ceil(result.pagination.total_count / perPage)); //total number of pages returned
           },
           (error) => {
-            console.log('error');
+            console.log(error);
             setIsLoaded(true);
             setError(error);
           }
@@ -126,7 +114,7 @@ function GetGiphies(props) {
   };
 
   if (props.searchGiphysFor === 'default') {
-    return <div />;
+    return <div data-testid='default-results' />;
   } else if (error) {
     return <div className='searchResults--error'>Error: {error.message}</div>;
   } else if (!isLoaded) {
@@ -134,7 +122,11 @@ function GetGiphies(props) {
   } else {
     return (
       <div>
-        <ul className='searchResults'>
+        <ul
+          className='searchResults'
+          aria-label='giphys'
+          data-testid='search-results-ul'
+        >
           {items.map((item) => (
             <li
               key={item.id}
@@ -148,6 +140,7 @@ function GetGiphies(props) {
               }
             >
               <img
+                data-testid='result-img'
                 src={item.images.fixed_height_downsampled.url}
                 width={item.images.fixed_height_downsampled.width}
                 height={item.images.fixed_height_downsampled.height}
