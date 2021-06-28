@@ -13,13 +13,13 @@ body {
 }
 
 .App {
+}
+
+.App_content {
   padding: 0 15px;
   @include md {
     padding: 0 40px;
   }
-}
-
-.App_content {
   max-width: 1280px;
   margin: 0 auto;
   &_header {
@@ -86,5 +86,15 @@ body {
       opacity: 1;
       max-height: 100%;
     }
+  }
+}
+
+.footer {
+  color: $color-contrast;
+  padding: 15px 0;
+  background-color: $color-base2;
+  font-size: 14px;
+  a {
+    color: $color-contrast;
   }
 }

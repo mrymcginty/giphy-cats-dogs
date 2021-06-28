@@ -5,16 +5,18 @@ import { ReactComponent as Cat } from './images/cat.svg';
 import { ReactComponent as Dog } from './images/dog.svg';
 
 import './App.scss';
+
 function App() {
   const [searchTerm, setSearchTerm] = useState('default');
   const [searchIsActive, setSearchIsActive] = useState('');
-  //const [resultsOpen, setResultsOpen] = useState(false);
 
-  const toggleClass = (searchFor) => {
+  //   update the searchTerm, called on button click
+  const toggleSearch = (searchFor) => {
     setSearchIsActive(searchFor);
     setSearchTerm(searchFor);
   };
 
+  // apply active class to search buttons if value matches searchTerm
   const isButtonActive = (value) => {
     return (
       'button button--search ' +
@@ -38,13 +40,13 @@ function App() {
             <div className='App_content_searchButtons'>
               <button
                 className={isButtonActive('cat')}
-                onClick={() => toggleClass('cat')}
+                onClick={() => toggleSearch('cat')}
               >
                 Team Cat
               </button>
               <button
                 className={isButtonActive('dog')}
-                onClick={() => toggleClass('dog')}
+                onClick={() => toggleSearch('dog')}
               >
                 Team Dog
               </button>
@@ -71,6 +73,10 @@ function App() {
         >
           <GetGiphys searchGiphysFor={searchTerm} />
         </div>
+      </div>
+      <div className='footer'>
+        Mary McGinty |{' '}
+        <a href='mailto:mry.mcginty@gmail.com'>mry.mcginty@gmail.com</a>
       </div>
     </div>
   );

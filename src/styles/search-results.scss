@@ -84,3 +84,17 @@
 .pagination {
   margin: 20px 0 120px 0;
 }
+
+.searchResults--error,
+.searchResults--loading {
+  min-height: 500px;
+  background-image: url('../images/icon-loading.svg');
+  background-repeat: no-repeat;
+  background-size: 40px;
+  background-position: 50% 100px;
+  background-color: $color-base1;
+  padding-top: 150px;
+}
+.searchResults--error {
+  background-image: none;
+}

@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 function DetailView(props) {
   const [imageLoaded, setImageLoaded] = useState('');
+  //update imageLoaded  inline with img onLoad event
   const handleImageLoaded = () => {
     setImageLoaded('loaded');
   };
   return (
-    <div
-      id='detailView'
-      className={'detailView ' + props.class + ' ' + imageLoaded}
-    >
+    <div className={'detailView ' + props.class + ' ' + imageLoaded}>
       <div className='detailView_content'>
         <div className='detailView_close' onClick={props.closeHandler}>
           close

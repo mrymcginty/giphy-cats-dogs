@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DetailView from './detail-view';
 function GetGiphies(props) {
+  const [data, setData] = useState({ hits: [] });
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
@@ -15,12 +16,31 @@ function GetGiphies(props) {
 
   const perPage = 25; //results per page
 
+  //   useEffect(() => {
+  //     const fetchData = async () => {
+  //       const result = await fetch(
+  //         `https://api.giphy.com/v1/gifs/search?&q=${props.searchGiphysFor}&limit=${perPage}&offset=${pageOffset}&api_key=tdu5VqiLjqndckPcArJD6l3URliWfKOG`
+  //       );
+
+  //       setData(result.data);
+  //     };
+
+  //     fetchData();
+  //   }, []);
+
   useEffect(() => {
     if (props.searchGiphysFor !== 'default') {
       fetch(
         `https://api.giphy.com/v1/gifs/search?&q=${props.searchGiphysFor}&limit=${perPage}&offset=${pageOffset}&api_key=tdu5VqiLjqndckPcArJD6l3URliWfKOG`
       )
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            setError({ message: response.status });
+            throw Error(response.status);
+          } else {
+            return response.json();
+          }
+        })
         .then(
           (result) => {
             setIsLoaded(true);
@@ -33,7 +53,8 @@ function GetGiphies(props) {
             setIsLoaded(true);
             setError(error);
           }
-        );
+        )
+        .catch((err) => setError(err));
     }
   }, [props.searchGiphysFor, pageOffset]); //fetch again when search term or paging changes
 
@@ -100,6 +121,9 @@ function GetGiphies(props) {
   const closeDetailView = () => {
     setDetailViewClass('');
     setDetailViewImg('');
+    setDetailViewTitle('');
+    setDetailViewRating('');
+    setDetailViewUrl('');
   };
 
   const isSearchActive = (value) => {
@@ -112,9 +136,9 @@ function GetGiphies(props) {
   if (props.searchGiphysFor === 'default') {
     return <div />;
   } else if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div className='searchResults--error'>Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <div className='searchResults--loading'>Loading...</div>;
   } else {
     return (
       <div>
