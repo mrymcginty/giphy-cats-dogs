@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DetailView from './detail-view';
 function GetGiphies(props) {
-  const [data, setData] = useState({ hits: [] });
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
@@ -124,13 +123,6 @@ function GetGiphies(props) {
     setDetailViewTitle('');
     setDetailViewRating('');
     setDetailViewUrl('');
-  };
-
-  const isSearchActive = (value) => {
-    return (
-      'searchResults_wrapper ' +
-      (props.searchGiphysFor !== 'default' ? 'visible' : '')
-    );
   };
 
   if (props.searchGiphysFor === 'default') {

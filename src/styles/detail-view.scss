@@ -36,6 +36,15 @@
         padding: 0 40px;
       }
     }
+
+    .close_inline {
+      border: none;
+      -webkit-appearance: none;
+      background-color: transparent;
+      text-decoration: underline;
+      color: $color-base1;
+      cursor: pointer;
+    }
     @include md {
       position: relative;
     }

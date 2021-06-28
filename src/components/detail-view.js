@@ -29,9 +29,9 @@ function DetailView(props) {
         </a>
 
         <p>
-          <a href='#' onClick={props.closeHandler}>
+          <button className='close_inline' onClick={props.closeHandler}>
             Close
-          </a>
+          </button>
         </p>
       </div>
     </div>
