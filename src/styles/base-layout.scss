@@ -20,6 +20,8 @@ body {
 }
 
 .App_content {
+  max-width: 1280px;
+  margin: 0 auto;
   &_header {
     @include searchTransition();
     display: flex;
@@ -56,7 +58,7 @@ body {
     justify-content: space-between;
     align-items: flex-end;
     svg {
-      width: 50%;
+      width: 40%;
       height: auto;
       @include searchTransition();
     }
