@@ -6,7 +6,10 @@ function DetailView(props) {
     setImageLoaded('loaded');
   };
   return (
-    <div className={'detailView ' + props.class + ' ' + imageLoaded}>
+    <div
+      className={'detailView ' + props.class + ' ' + imageLoaded}
+      data-testid='detail-view-test'
+    >
       <div className='detailView_content'>
         <div className='detailView_close' onClick={props.closeHandler}>
           close
@@ -16,8 +19,8 @@ function DetailView(props) {
           alt={props.title}
           onLoad={handleImageLoaded}
         />
-        <h2>Title: {props.title}</h2>
-        <p>Rating: {props.rating}</p>
+        <h2>{props.title}</h2>
+        <p>{props.rating}</p>
 
         <a
           className='button'

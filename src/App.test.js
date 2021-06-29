@@ -5,9 +5,10 @@ import {
   screen,
   cleanup,
   waitFor,
+  within,
 } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import GetGiphies from './components/search-results';
+import DetailView from './components/detail-view';
 import App from './App';
 
 const container = document.querySelector('#app');
@@ -45,4 +46,28 @@ test('dog button clicked, returns ul containing 25 images or less', async () => 
 
   let images = screen.getAllByTestId('result-img');
   expect(images.length).toBeLessThanOrEqual(25);
+});
+test('Detail View shows the content and a close button', () => {
+  // Arrange
+  const handleClose = jest.fn();
+
+  // Act
+  const { getByText, getAllByText } = render(
+    <DetailView
+      class='test'
+      image_url='https://giphy.com/embed/3o6Zt481isNVuQI1l6'
+      title='test title'
+      rating='rating: pg'
+      source_url='https://giphy.com/gifs/cat-smoke-smoking-3o6Zt481isNVuQI1l6/embed'
+      closeHandler={handleClose}
+    />
+  );
+  // Assert
+  expect(getByText('test title')).toBeTruthy();
+
+  // Act
+  fireEvent.click(getAllByText(/close/i)[0]);
+
+  // Assert
+  expect(handleClose).toHaveBeenCalledTimes(1);
 });

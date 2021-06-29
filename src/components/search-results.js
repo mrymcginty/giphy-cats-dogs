@@ -129,12 +129,13 @@ function GetGiphies(props) {
         >
           {items.map((item) => (
             <li
+              data-testid='result-li'
               key={item.id}
               onClick={() =>
                 openDetailView({
                   src: item.images.downsized_large.url,
-                  title: item.title,
-                  rating: item.rating,
+                  title: 'Title: ' + item.title,
+                  rating: 'Rating: ' + item.rating,
                   url: item.url,
                 })
               }
