@@ -3,6 +3,8 @@
 :smirk_cat:
 :dog:
 
+[Click here for the live demo](https://mrymcginty.github.io/giphy-cats-dogs/)
+
 A Single Page JavaScript Application to display GIF results from [Giphy's developer API](https://developers.giphy.com/docs/api#quick-start-guide).
 
 The application includes the following features:

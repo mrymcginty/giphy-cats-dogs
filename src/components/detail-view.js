@@ -6,10 +6,7 @@ function DetailView(props) {
     setImageLoaded('loaded');
   };
   return (
-    <div
-      className={'detailView ' + props.class + ' ' + imageLoaded}
-      data-testid='detail-view-test'
-    >
+    <div className={'detailView ' + props.class + ' ' + imageLoaded}>
       <div className='detailView_content'>
         <div className='detailView_close' onClick={props.closeHandler}>
           close
